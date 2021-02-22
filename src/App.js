@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
+// import logo from './logo.svg';
 import './App.css';
+import Header from "./components/Header/Header";
+import NavBar from "./components/NavBar/NavBar";
+import Profile from "./components/Profile/Profile";
+import {BrowserRouter, Route} from "react-router-dom";
+import Messenger from "./components/Messenger/Messenger";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <BrowserRouter>
+            <div className="app-wrapper">
+                <Header/>
+                <NavBar/>
+                <div className="app-wrapper-content">
+                    <Route path="/profile" render={() => <Profile/>}/>
+                    <Route path="/messenger" render={() => <Messenger/>}/>
+                </div>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
