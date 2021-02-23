@@ -1,10 +1,13 @@
 import React from 'react';
 import classes from './Messenger.module.css';
+import Dialogues from "./Dialogues/Dialogues";
+import DialogChat from "./DialogChat/DialogChat";
 
-const Messenger = () => {
+const Messenger = (props) => {
     return (
         <div className={classes.messenger}>
-            Messenger
+            <Dialogues store={props.store}/>
+            <DialogChat store={props.store}/>
         </div>
     );
 }

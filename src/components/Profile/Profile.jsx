@@ -6,8 +6,7 @@ const Profile = (props) => {
     let getPostText = React.createRef();
 
     let addPost = () => {
-        let text = getPostText.current.value;
-        props.store.addPost(text);
+        props.store.addPost();
     };
 
     let onNewPostText = () => {

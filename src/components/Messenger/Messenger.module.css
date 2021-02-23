@@ -1,0 +1,6 @@
+.messenger {
+    display: grid;
+    margin: 0;
+    grid-template-areas: "d ch";
+    grid-template-columns: 1fr 1fr;
+}
