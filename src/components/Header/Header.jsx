@@ -3,9 +3,9 @@ import classes from './Header.module.css';
 
 const Header = () => {
     return (
-        <div className={classes.header}>
+        <header className={classes.header}>
             Header
-        </div>
+        </header>
     );
 }
 

@@ -1,10 +1,36 @@
 import React from 'react';
 import classes from './Profile.module.css';
+import Post from "./Post/Post";
 
-const Profile = () => {
+const Profile = (props) => {
+    let getPostText = React.createRef();
+
+    let addPost = () => {
+        let text = getPostText.current.value;
+        props.store.addPost(text);
+    };
+
+    let onNewPostText = () => {
+        let text = getPostText.current.value;
+        props.store.updateNewPostText(text);
+    };
+
+    let postsSet = props.store.getState().profileData.postsData
+        .map(post => <Post postText={post.postText} likes={post.likes}/>);
+
     return (
         <div className={classes.profile}>
-            Profile
+            <div className={classes.profileInfo}>
+                <img
+                    src="https://pbs.twimg.com/profile_images/2881220369/2b27ac38b43b17a8c5eacfc443ce3384_400x400.jpeg"/>
+                Profile info
+            </div>
+            <div className={classes.posts}>
+                <textarea ref={getPostText} onChange={onNewPostText}
+                          value={props.store.getState().profileData.newPostText}/>
+                <button onClick={addPost}>send</button>
+                {postsSet}
+            </div>
         </div>
     );
 }

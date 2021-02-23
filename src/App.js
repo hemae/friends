@@ -7,14 +7,14 @@ import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import Messenger from "./components/Messenger/Messenger";
 
-const App = () => {
+const App = (props) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <NavBar/>
                 <div className="app-wrapper-content">
-                    <Route path="/profile" render={() => <Profile/>}/>
+                    <Route path="/profile" render={() => <Profile store={props.store}/>}/>
                     <Route path="/messenger" render={() => <Messenger/>}/>
                 </div>
             </div>
