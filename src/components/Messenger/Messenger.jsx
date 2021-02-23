@@ -6,8 +6,8 @@ import DialogChat from "./DialogChat/DialogChat";
 const Messenger = (props) => {
     return (
         <div className={classes.messenger}>
-            <Dialogues store={props.store}/>
-            <DialogChat store={props.store}/>
+            <Dialogues dialoguesData={props.messengerData.dialoguesData}/>
+            <DialogChat chatData={props.messengerData.chatData} dispatch={props.dispatch}/>
         </div>
     );
 }

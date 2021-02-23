@@ -7,22 +7,22 @@ const DialogChat = (props) => {
     let getMessageText = React.createRef();
 
     let addMessage = () => {
-        props.store.addMessage();
+        props.dispatch({type: "ADD-MESSAGE"});
     };
 
     let onNewMessageText = () => {
         let text = getMessageText.current.value;
-        props.store.updateNewMessageText(text);
+        props.dispatch({type: "UPDATE-NEW-MESSAGE-TEXT", newMessageText: text});
     };
 
-    let messagesSet = props.store.getState().messengerData.chatData.messagesData
+    let messagesSet = props.chatData.messagesData
         .map(messageData => <Message messageData={messageData}/>);
 
     return (
         <div className={classes.dialogChat}>
             {messagesSet}
             <textarea ref={getMessageText} onChange={onNewMessageText}
-                      value={props.store.getState().messengerData.chatData.newMessageText}/>
+                      value={props.chatData.newMessageText}/>
             <button onClick={addMessage}>send</button>
         </div>
     );

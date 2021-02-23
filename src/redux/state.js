@@ -47,35 +47,36 @@ let store = {
             },
         },
     },
-    _callsubscriber() {
+    _callSubscriber() {
         console.log("blabla");
     },
+
     getState() {
         return this._state;
     },
-    addPost(postText) {
-        this._state.profileData.postsData.push({id: "3", postText: this._state.profileData.newPostText, likes: "0"});
-        this._state.profileData.newPostText = "";
-        this._callsubscriber();
-    },
-    updateNewPostText(newPostText) {
-        this._state.profileData.newPostText = newPostText;
-        this._callsubscriber();
-    },
-    addMessage() {
-        this._state.messengerData.chatData.messagesData.push({
-            id: "4",
-            messageText: this._state.messengerData.chatData.newMessageText
-        });
-        this._state.messengerData.chatData.newMessageText = "";
-        this._callsubscriber();
-    },
-    updateNewMessageText(newMessageText) {
-        this._state.messengerData.chatData.newMessageText = newMessageText;
-        this._callsubscriber();
-    },
     subscribe(observer) {
-        this._callsubscriber = observer;
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            this._state.profileData.postsData.push({id: "3", postText: this._state.profileData.newPostText, likes: "0"});
+            this._state.profileData.newPostText = "";
+            this._callSubscriber(this._state);
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profileData.newPostText = action.newPostText;
+            this._callSubscriber(this._state);
+        } else if (action.type === "ADD-MESSAGE") {
+            this._state.messengerData.chatData.messagesData.push({
+                id: "4",
+                messageText: this._state.messengerData.chatData.newMessageText
+            });
+            this._state.messengerData.chatData.newMessageText = "";
+            this._callSubscriber(this._state);
+        } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
+            this._state.messengerData.chatData.newMessageText = action.newMessageText;
+            this._callSubscriber(this._state);
+        }
     }
 }
 

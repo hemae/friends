@@ -6,15 +6,15 @@ const Profile = (props) => {
     let getPostText = React.createRef();
 
     let addPost = () => {
-        props.store.addPost();
+        props.dispatch({type: "ADD-POST"});
     };
 
     let onNewPostText = () => {
         let text = getPostText.current.value;
-        props.store.updateNewPostText(text);
+        props.dispatch({type: "UPDATE-NEW-POST-TEXT", newPostText: text});
     };
 
-    let postsSet = props.store.getState().profileData.postsData
+    let postsSet = props.profileData.postsData
         .map(post => <Post postText={post.postText} likes={post.likes}/>);
 
     return (
@@ -26,7 +26,7 @@ const Profile = (props) => {
             </div>
             <div className={classes.posts}>
                 <textarea ref={getPostText} onChange={onNewPostText}
-                          value={props.store.getState().profileData.newPostText}/>
+                          value={props.profileData.newPostText}/>
                 <button onClick={addPost}>send</button>
                 {postsSet}
             </div>
