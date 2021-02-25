@@ -10,7 +10,7 @@ const Profile = (props) => {
                     src="https://pbs.twimg.com/profile_images/2881220369/2b27ac38b43b17a8c5eacfc443ce3384_400x400.jpeg"/>
                 Profile info
             </div>
-            <PostsContainer store={props.store}/>
+            <PostsContainer />
         </div>
     );
 }

@@ -1,25 +1,28 @@
 import React from 'react';
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../../redux/messengerReducer";
 import DialogChat from "./DialogChat";
+import {connect} from "react-redux";
 
 
-const DialogChatContainer = (props) => {
-    let addMessage = () => {
-        let action = addMessageActionCreator();
-        props.store.dispatch(action);
-    };
-
-    let onMessageChange = (text) => {
-        let action = updateNewMessageTextActionCreator(text);
-        props.store.dispatch(action);
-    };
-
-    let state = props.store.getState();
-
-    return (<DialogChat messagesData={state.messengerData.chatData.messagesData}
-                        newMessageText={state.messengerData.chatData.newMessageText} addMessage={addMessage}
-                        onMessageChange={onMessageChange}/>);
+let mapPropsToState = (state) => {
+    return {
+        messagesData: state.messengerData.chatData.messagesData,
+        newMessageText: state.messengerData.chatData.newMessageText
+    }
 }
+
+let mapDispatchToState = (dispatch) => {
+    return {
+        addMessage: () => {
+            dispatch(addMessageActionCreator())
+        },
+        onMessageChange: (text) => {
+            dispatch(updateNewMessageTextActionCreator(text))
+        }
+    }
+}
+
+const DialogChatContainer = connect(mapPropsToState, mapDispatchToState)(DialogChat);
 
 
 export default DialogChatContainer;
