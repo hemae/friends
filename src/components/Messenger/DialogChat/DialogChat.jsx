@@ -6,24 +6,25 @@ import Message from "./Message/Message";
 const DialogChat = (props) => {
     let getMessageText = React.createRef();
 
-    let addMessage = () => {
-        props.dispatch({type: "ADD-MESSAGE"});
+    let onAddMessage = () => {
+        props.addMessage();
     };
 
-    let onNewMessageText = () => {
+    let onMessageChange = () => {
         let text = getMessageText.current.value;
-        props.dispatch({type: "UPDATE-NEW-MESSAGE-TEXT", newMessageText: text});
+        props.onMessageChange(text);
     };
 
-    let messagesSet = props.chatData.messagesData
-        .map(messageData => <Message messageData={messageData}/>);
+    let messagesSet = props.messagesData
+        .map(messageData => <Message messageText={messageData.messageText}/>);
 
     return (
         <div className={classes.dialogChat}>
             {messagesSet}
-            <textarea ref={getMessageText} onChange={onNewMessageText}
-                      value={props.chatData.newMessageText}/>
-            <button onClick={addMessage}>send</button>
+            <textarea ref={getMessageText} onChange={onMessageChange}
+                      value={props.newMessageText}
+                      placeholder="type your message"/>
+            <button onClick={onAddMessage}>send</button>
         </div>
     );
 }

@@ -15,9 +15,8 @@ const App = (props) => {
                 <NavBar/>
                 <div className="app-wrapper-content">
                     <Route path="/profile"
-                           render={() => <Profile profileData={props.state.profileData} dispatch={props.dispatch}/>}/>
-                    <Route path="/messenger" render={() => <Messenger messengerData={props.state.messengerData}
-                                                                      dispatch={props.dispatch}/>}/>
+                           render={() => <Profile store={props.store}/>}/>
+                    <Route path="/messenger" render={() => <Messenger store={props.store}/>}/>
                 </div>
             </div>
         </BrowserRouter>

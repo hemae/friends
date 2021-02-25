@@ -2,3 +2,12 @@
     grid-area: n;
     background-color: #30ff00;
 }
+
+.nav .item {
+    padding: 10px;
+    font-size: 25px;
+}
+
+.nav .item .activeLink {
+    color: red;
+}

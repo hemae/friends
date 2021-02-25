@@ -1,3 +1,7 @@
+import profileReducer from "./profileReducer";
+import messengerReducer from "./messengerReducer";
+
+
 let store = {
     _state: {
         profileData: {
@@ -6,7 +10,7 @@ let store = {
                 {id: "1", postText: "I'm stupid!", likes: "8"},
                 {id: "2", postText: "I'm natural!", likes: "-1"}
             ],
-            newPostText: "type new post..."
+            newPostText: ""
         },
         messengerData: {
             dialoguesData: [
@@ -43,7 +47,7 @@ let store = {
                     {id: "2", messageText: "Well!"},
                     {id: "3", messageText: "Yeah, dude!)"}
                 ],
-                newMessageText: "type your message..."
+                newMessageText: ""
             },
         },
     },
@@ -59,24 +63,9 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            this._state.profileData.postsData.push({id: "3", postText: this._state.profileData.newPostText, likes: "0"});
-            this._state.profileData.newPostText = "";
-            this._callSubscriber(this._state);
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.profileData.newPostText = action.newPostText;
-            this._callSubscriber(this._state);
-        } else if (action.type === "ADD-MESSAGE") {
-            this._state.messengerData.chatData.messagesData.push({
-                id: "4",
-                messageText: this._state.messengerData.chatData.newMessageText
-            });
-            this._state.messengerData.chatData.newMessageText = "";
-            this._callSubscriber(this._state);
-        } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
-            this._state.messengerData.chatData.newMessageText = action.newMessageText;
-            this._callSubscriber(this._state);
-        }
+        this._state.profileData = profileReducer(this._state.profileData, action);
+        this._state.messengerData = messengerReducer(this._state.messengerData, action);
+        this._callSubscriber();
     }
 }
 

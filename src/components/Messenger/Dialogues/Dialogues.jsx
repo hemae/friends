@@ -3,7 +3,9 @@ import classes from './Dialogues.module.css';
 import Dialog from "./Dialog/Dialog";
 
 const Dialogues = (props) => {
-    let dialoguesSet = props.dialoguesData
+    let dialoguesData = props.store.getState().messengerData.dialoguesData;
+
+    let dialoguesSet = dialoguesData
         .map(dialog => <Dialog profileName={dialog.profileName} profileImgLink={dialog.profileImgLink}/>);
 
     return (
