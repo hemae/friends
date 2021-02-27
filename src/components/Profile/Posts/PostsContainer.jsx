@@ -8,8 +8,8 @@ let mapPropsToState = (state) => {
     return {
         postsData: state.profileData.postsData,
         newPostText: state.profileData.newPostText
-    }
-}
+    };
+};
 
 let mapDispatchToState = (dispatch) => {
     return {
