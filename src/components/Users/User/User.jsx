@@ -1,12 +1,15 @@
 import React from 'react';
 import classes from './User.module.css';
+import nullPhoto from "./../../../assets/images/nullPhoto.png";
 
 const User = (props) => {
     return (
         <div className={classes.user}>
             <span>
                 <div>
-                    <img src={props.userData.userPhoto}/>
+                    <img src={props.userData.photos.small != null
+                        ? props.userData.photos.small
+                        : nullPhoto}/>
                 </div>
                 <div>
                     {props.userData.followed
@@ -16,12 +19,12 @@ const User = (props) => {
             </span>
             <span>
                 <div>
-                    {props.userData.firstName}
+                    {props.userData.name}
                     {props.userData.status}
                 </div>
                 <div>
-                    {props.userData.country}
-                    {props.userData.city}
+                    {"props.userData.country"}
+                    {"props.userData.city"}
                 </div>
             </span>
         </div>
